@@ -31,7 +31,11 @@ class StyleRule
           
   remove: (index) ->
     index = index or @getCssRules().length - 1
-    @style[@removeMethodName].call @style, index
+    try
+      @style[@removeMethodName].call @style, index
+    catch error    
+    finally
+      return index
         
   replace: (index, selector, declaration) ->
     @style[@removeMethodName].call @style, index
